@@ -8,7 +8,7 @@ public class Car {
 
     //efficiency in constructor
     public Car(double efficiency) {
-        this.efficiency = efficiency;
+        this.efficiency = (efficiency < 0) ? 0 : efficiency;
     }
 
     //addFuel() to tank up
@@ -23,10 +23,13 @@ public class Car {
         if (getFuelLevel() <=0){
             System.out.println("No fuel in the tank, you can't drive. ");
         }
-        else if (distance < 0 ){
-            distance = 0;
+        else if (distance < 0){
+                distance = 0;
             System.out.println("Distance is negative that is impossible, " +
-                    "in that case distance is set to zero");
+                    "in that case distance is set to zero or fuel efficiency is 0 or less, please check fuel efficiency.");
+        }
+        else if (efficiency <= 0){
+            System.out.println("Fuel efficiency is 0 or less, please check fuel efficiency it should be bigger then 0.");
         }
         else
         setFuel(getFuelLevel() - distance/efficiency);
